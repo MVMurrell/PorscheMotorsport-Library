@@ -17,9 +17,12 @@ This project implemented:
 -Bootstrap
 
 
-In the future I would like to implement pictures to show be shown when a car is brought up.
+In the future:
+I would like to implement pictures to show be shown when a car is brought up.
 
-When the initial page is displayed I would like to have the pictures sized uniformally so the page doesn’t hav got resize.
+When the initial page is displayed I would like to have the pictures sized uniformally so the page doesn’t have to resize when switching from picture to picture.
+
+Additional work needs to be done on the input fields to handle things like commas in number fields.
 
 I would like to add additional tables for columns such as the engine to bring up more information for those  entities.
 
