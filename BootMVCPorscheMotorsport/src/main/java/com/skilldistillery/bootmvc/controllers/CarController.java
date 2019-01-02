@@ -51,7 +51,7 @@ public class CarController {
 	}
 	
 	@RequestMapping(path="createCar.do" , method=RequestMethod.POST)
-	public ModelAndView createCar(Model model, @RequestParam("model") String model1 , @RequestParam("engineSize") double engine , 
+	public ModelAndView createCar(@RequestParam("model") String model1 , @RequestParam("engineSize") double engine , 
 			@RequestParam("horsepower") int hp , @RequestParam("torque") int torque , @RequestParam("topSpeed") int speed , 
 			@RequestParam("enginePosition") String enginePosition, @RequestParam("weight") int weight, @RequestParam("value") int value, 
 			@RequestParam("subModels") String subModels, @RequestParam("drivetrain") String drivetrain , 
@@ -60,6 +60,7 @@ public class CarController {
 			@RequestParam("cylinders") int cylinders, @RequestParam("location") String location, @RequestParam("firstYear") int firstYear){
             ModelAndView mv = new ModelAndView("WEB-INF/car/createdcar.jsp");
 			Racecars car = new Racecars();
+			car.setId(0);
             car.setModel(model1);
             car.setEngineSize(engine);
             car.setHorsepower(hp);
