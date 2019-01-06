@@ -1,6 +1,6 @@
 package com.skilldistillery.JPAPorscheMotorspor.tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.JPAPorscheMotorsport.entities.RaceInfo;
 import com.skilldistillery.JPAPorscheMotorsport.entities.Racecars;
 
 class RacecarsTest {
@@ -48,6 +49,10 @@ class RacecarsTest {
 		assertEquals(1.1, rc.getEngineSize(),.001);
 	}
 	
-	
+	@Test
+	void test_raceInfo_mapped() {
+		RaceInfo ri = rc.getRi();
+		assertEquals(10, ri.getWins());
+	}
 
 }

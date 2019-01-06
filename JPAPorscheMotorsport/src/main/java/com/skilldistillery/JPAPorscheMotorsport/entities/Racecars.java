@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Racecars {
@@ -14,6 +14,18 @@ public class Racecars {
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
+
+@OneToOne
+@JoinColumn(name="id")
+private RaceInfo ri;
+
+public RaceInfo getRi() {
+	return ri;
+}
+
+public void setRi(RaceInfo ri) {
+	this.ri = ri;
+}
 
 private String model;
 
