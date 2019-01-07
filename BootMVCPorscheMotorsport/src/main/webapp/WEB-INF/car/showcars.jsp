@@ -44,16 +44,14 @@
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
 		</form>
 	</nav>
-	<c:choose>
-		<c:when test="${fn:length(cars) gt 0} ">
+	<%-- <c:choose> --%>
+		<%-- <c:when test="${fn:length(cars) gt 0} "> --%>
 			<c:forEach items="${cars}" var="c">
 
 				<ul class="list-group">
-					<li class="list-group-item">${c.model}</li>
-					<li class="list-group-item">${c.engineSize}</li>
-					<li class="list-group-item">${c.horsepower}</li>
-					<li class="list-group-item">${c.engineSize}</li>
-					<li class="list-group-item">${c.id}</li>
+					<li class="list-group-item">Porsche ${c.model}</li>
+					<li class="list-group-item">Car ID: ${c.id}</li>
+					<li class="list-group-item">Production Year: ${c.firstYear}</li>
 				</ul>
 				<div>
 					<form:form action="getCar.do" method="GET">
@@ -70,14 +68,20 @@
 				</div>
 				<div>
 					<form:form action="deleteCar.do" method="post">
-						<input type="hidden" name="delete" value="${c.id}" name="id" />
-						<input type="submit" class="btn btn-danger" value="Delete Film" />
+						<input type="hidden" value="${c.id}" name="id" />
+						<input type="submit" class="btn btn-danger" value="Delete Car" />
+					</form:form>
+				</div>
+				<div>
+					<form:form action="createRI.do" method="GET">
+						<input type="hidden" value="${c.id}" name="carId" />
+						<input type="submit" class="btn btn-secondary" value="Add Race" />
 					</form:form>
 				</div>
 			</c:forEach>
-		</c:when>
-		<c:otherwise>No Cars Found</c:otherwise>
-	</c:choose>
+		<%-- </c:when>
+		<c:otherwise>No Cars Found</c:otherwise> --%>
+	<%-- </c:choose> --%>
 
 </body>
 </html>

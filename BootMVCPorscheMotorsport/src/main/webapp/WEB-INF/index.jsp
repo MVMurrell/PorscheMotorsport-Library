@@ -44,6 +44,7 @@ background-color: #333333;
 			Library</a> 
 			<a class="nav-item nav-link " href="home.do" >Home</a> <a
 			class="nav-item nav-link " href="createCar.do">Create Car</a>
+			<a class="nav-item nav-link " href="pickCar.do" >Add Race</a> 
 		<form class="form-inline" action="getCar.do" method="GET">
 			<input class="form-control mr-sm-2" type="number"
 				placeholder="Search By ID" name="id"  aria-label="Search">

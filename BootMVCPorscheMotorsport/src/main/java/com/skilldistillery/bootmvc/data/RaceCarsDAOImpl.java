@@ -61,6 +61,12 @@ public class RaceCarsDAOImpl implements RaceCarsDAO {
 		boolean removed = !em.contains(car);
 		return removed;
 	}
+	@Override
+	public List<Racecars> getAllCars() {
+		String qry = "Select c FROM Racecars c";
+		List<Racecars> cars = em.createQuery(qry, Racecars.class).getResultList();
+		return cars;
+	}
 
 
 }

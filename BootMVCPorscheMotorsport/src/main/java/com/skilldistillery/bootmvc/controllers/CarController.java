@@ -124,6 +124,16 @@ public class CarController {
 	mv.addObject("car", car);
 	return mv;
 	}
+	@RequestMapping(path="pickCar.do", method=RequestMethod.GET)
+	public ModelAndView pickCar() {
+		ModelAndView mv = new ModelAndView();
+		List <Racecars> cars = dao.getAllCars();
+		mv.addObject("cars", cars);
+		mv.setViewName("WEB-INF/car/showcars.jsp");
+		return mv;
+		
+	}
+	
 }
 	
 	

@@ -1,5 +1,6 @@
 package com.skilldistillery.JPAPorscheMotorsport.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,13 +17,6 @@ public class Racecars {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 
-public int getRaceId() {
-	return raceId;
-}
-
-public void setRaceId(int raceId) {
-	this.raceId = raceId;
-}
 
 @OneToMany(mappedBy="car")
 private List <RaceInfo> ri;
@@ -37,8 +31,25 @@ public void setRi(List<RaceInfo> ri) {
 	this.ri = ri;
 }
 
-@Column(name="race_id")
-private int raceId;
+public void addRaceInfo(RaceInfo info) {
+	if(info == null) ri = new ArrayList<>();
+	
+	if(!ri.contains(info)) {
+		ri.add(info);
+		if(info.getCar() != null) {
+			info.getCar().getRi().remove(info);
+		}
+		info.setCar(this);
+	}
+}
+
+public void removeRaceInfo(RaceInfo info) {
+	info.setCar(null);
+	if(ri != null) {
+		ri.remove(info);
+	}
+}
+
 
 @Column(name="engine_size")
 private Double engineSize;

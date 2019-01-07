@@ -58,7 +58,7 @@ class RacecarsTest {
 		RaceInfo ri = em.find(RaceInfo.class, 1);
 		System.out.println(ri);
 		int info = rc.getRi().get(1).getLosses();
-		assertEquals("Laguna Seca", ri.getRacetrack());
+		assertEquals(1, ri.getRacetrackId());
 		assertEquals(3, info);
 	}
 	

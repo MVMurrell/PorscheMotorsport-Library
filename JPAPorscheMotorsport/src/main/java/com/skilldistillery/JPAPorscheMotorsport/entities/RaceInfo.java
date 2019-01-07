@@ -1,5 +1,7 @@
 package com.skilldistillery.JPAPorscheMotorsport.entities;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.sql.Insert;
-
 @Entity
 @Table(name="race_info")
 public class RaceInfo {
@@ -19,44 +19,29 @@ public class RaceInfo {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 
-@ManyToOne()
-@JoinColumn(name="race_id")
+@ManyToOne
+@JoinColumn(name="car_id")
 private Racecars car;
 
-private String racetrack;
+@Column(name="racetrack_id")
+private int racetrackId;
 
-//@Column(name="race_id")
-//private int raceId;
-//
-//public int getRaceId() {
-//	return raceId;
-//}
-//
-//public void setRaceId(int raceId) {
-//	this.raceId = raceId;
-//}
-//
-//public int getRacecarID() {
-//	return raceId;
-//}
-//
-//public void setRacecarID(int racecarID) {
-//	this.raceId = racecarID;
-//}
 
 @Override
 public String toString() {
-	return "RaceInfo [id=" + id + ", car=" + car + ", racetrack=" + racetrack + ", losses=" + losses
+	return "RaceInfo [id=" + id + ", car=" + car + ", racetrack=" + racetrackId + ", losses=" + losses
 			+ ", championships=" + championships + ", wins=" + wins
 			+ "]";
 }
 
-public String getRacetrack() {
-	return racetrack;
+public int getRacetrackId() {
+	return racetrackId;
 }
 
-public void setRacetrack(String racetrack) {
-	this.racetrack = racetrack;
+
+
+public void setRacetrack(int racetrackId) {
+	this.racetrackId = racetrackId;
 }
 
 private int losses;
