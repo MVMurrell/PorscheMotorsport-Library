@@ -57,7 +57,8 @@ public class CarController {
 			@RequestParam("subModels") String subModels, @RequestParam("drivetrain") String drivetrain , 
 			@RequestParam("engineType") String engineType, @RequestParam("productionRun") int productionRun, 
 			@RequestParam("designer") String designer, @RequestParam("transmission") String transmission, 
-			@RequestParam("cylinders") int cylinders, @RequestParam("location") String location, @RequestParam("firstYear") int firstYear){
+			@RequestParam("cylinders") int cylinders, @RequestParam("location") String location, @RequestParam("firstYear") int firstYear,
+			@RequestParam("raceInfoId") int raceInfoId){
             ModelAndView mv = new ModelAndView("WEB-INF/car/createdcar.jsp");
 			Racecars car = new Racecars();
 			car.setId(0);
@@ -111,7 +112,7 @@ public class CarController {
 	@RequestMapping(path="updateCar.do" , method=RequestMethod.POST)
 	public ModelAndView updateCar(@RequestParam("id")int id, @RequestParam("subModels") String subModels, 
 			@RequestParam("value") int value, @RequestParam("productionRun") int productionRun,
-			@RequestParam("firstYear")int firstYear) {
+			@RequestParam("firstYear")int firstYear, @RequestParam("raceInfoId")int raceInfoId) {
 	ModelAndView mv = new ModelAndView();
 	Racecars car = new Racecars();
 	car.setSubModels(subModels);
@@ -123,6 +124,16 @@ public class CarController {
 	mv.addObject("car", car);
 	return mv;
 	}
+	@RequestMapping(path="pickCar.do", method=RequestMethod.GET)
+	public ModelAndView pickCar() {
+		ModelAndView mv = new ModelAndView();
+		List <Racecars> cars = dao.getAllCars();
+		mv.addObject("cars", cars);
+		mv.setViewName("WEB-INF/car/showcars.jsp");
+		return mv;
+		
+	}
+	
 }
 	
 	

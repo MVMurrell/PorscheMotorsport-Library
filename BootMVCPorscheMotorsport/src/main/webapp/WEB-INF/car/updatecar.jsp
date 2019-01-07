@@ -57,6 +57,10 @@
 			First Year of Production:</label> <input type="text" name="firstYear"
 				value="${car.firstYear}" />
 		</div>
+		<div class="form-group">
+			Race Info ID:</label> <input type="number" name="RaceID"
+				value="${car.raceInfoId}" />
+		</div>
 		<label for="id"></label> <input type="hidden" name="id"
 			value="${car.id}" /> <input type="submit" class="btn btn-secondary"
 			value="Submit" />

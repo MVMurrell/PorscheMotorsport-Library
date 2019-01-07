@@ -107,6 +107,15 @@ p {
 					</ul>
 				</div>
 			</div>
+			<c:forEach items="${car.ri}" var="ri">
+				<ul class="list-group">
+					<h3>Race at ${ri.racetrackId}</h3>
+					<li class="list-group-item">Id: ${ri.id}</li>
+					<li class="list-group-item">Wins: ${ri.wins}</li>
+					<li class="list-group-item">Losses: ${ri.losses}</li>
+					<li class="list-group-item">Championships: ${ri.championships}</li>
+				</ul>
+			</c:forEach>
 			<div class="nav">
 				<div>
 					<form:form action="updateCar.do" method="GET">

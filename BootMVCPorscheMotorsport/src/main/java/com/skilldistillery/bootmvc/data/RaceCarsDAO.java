@@ -11,4 +11,5 @@ public interface RaceCarsDAO {
 	public Racecars createCar(Racecars car);
 	public Racecars updateCar(int id, Racecars car);
 	public boolean destroy(int id);
+	public List<Racecars> getAllCars();
 }

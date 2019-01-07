@@ -31,3 +31,5 @@ Run the application. At the home screen you have the option to create a car or f
 To find a car by id, simply place the ID of the car you would like to search by and press go. The full details will be displayed along with the ability to update the car or delete it. If you choose to delete a car you will not be given a chance to verify your decision but you will be able to see the full details of the car you deleted. If you choose to update the car you will be given the 5 parameters that will are allowed to be modified. Once finished press submit and the updated car will be displayed.
 
 Back at the home page, If you choose to create a car, the create page will be displayed with the ar characteristics shown as empty. It is important that you have all of the car’s information at this point as only a few characteristics are capable of being updated after the car is updated. Once finished, press submit and the new car will be displayed. If you would like to go home. Simply press “Home”.
+
+Making new changes to add a table to the current project.
