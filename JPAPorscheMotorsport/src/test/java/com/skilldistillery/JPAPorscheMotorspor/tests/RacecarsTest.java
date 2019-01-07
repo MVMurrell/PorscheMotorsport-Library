@@ -53,23 +53,14 @@ class RacecarsTest {
 		assertEquals(1.1, rc.getEngineSize(),.001);
 	}
 	
-//	@Test
-//	void test_raceInfo_mapped() {
-//		RaceInfo ri = new RaceInfo();
-//		List<RaceInfo> ri2 = rc.getRi();
-//		em.getTransaction().begin();
-//		ri.setRacecarID(1);
-//		ri.setRaces(10);
-//		ri.setChampionships(5);	
-//		em.persist(ri);
-//		em.flush();
-//		rc.setRaceInfoId(1);
-//		em.getTransaction().commit();
-//		System.out.println(rc.getRaceInfoId());
-//		
-//		
-//	}
-	
+	@Test
+	void test_raceInfo_mapped() {
+		RaceInfo ri = em.find(RaceInfo.class, 1);
+		System.out.println(ri);
+		int info = rc.getRi().get(1).getLosses();
+		assertEquals("Laguna Seca", ri.getRacetrack());
+		assertEquals(3, info);
+	}
 	
 
 }

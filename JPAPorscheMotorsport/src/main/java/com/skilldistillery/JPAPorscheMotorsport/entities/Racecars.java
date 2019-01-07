@@ -16,6 +16,14 @@ public class Racecars {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 
+public int getRaceId() {
+	return raceId;
+}
+
+public void setRaceId(int raceId) {
+	this.raceId = raceId;
+}
+
 @OneToMany(mappedBy="car")
 private List <RaceInfo> ri;
 
@@ -28,6 +36,9 @@ public List<RaceInfo> getRi() {
 public void setRi(List<RaceInfo> ri) {
 	this.ri = ri;
 }
+
+@Column(name="race_id")
+private int raceId;
 
 @Column(name="engine_size")
 private Double engineSize;

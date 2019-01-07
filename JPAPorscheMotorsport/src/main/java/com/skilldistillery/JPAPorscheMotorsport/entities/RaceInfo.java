@@ -1,5 +1,6 @@
 package com.skilldistillery.JPAPorscheMotorsport.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.sql.Insert;
 
 @Entity
 @Table(name="race_info")
@@ -16,34 +19,43 @@ public class RaceInfo {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 
-@ManyToOne
-@JoinColumn(name="id")
+@ManyToOne()
+@JoinColumn(name="race_id")
 private Racecars car;
 
-private int racetrack;
+private String racetrack;
 
-private int racecarsId;
-
-public int getRacecarID() {
-	return racecarsId;
-}
-
-public void setRacecarID(int racecarID) {
-	this.racecarsId = racecarID;
-}
+//@Column(name="race_id")
+//private int raceId;
+//
+//public int getRaceId() {
+//	return raceId;
+//}
+//
+//public void setRaceId(int raceId) {
+//	this.raceId = raceId;
+//}
+//
+//public int getRacecarID() {
+//	return raceId;
+//}
+//
+//public void setRacecarID(int racecarID) {
+//	this.raceId = racecarID;
+//}
 
 @Override
 public String toString() {
 	return "RaceInfo [id=" + id + ", car=" + car + ", racetrack=" + racetrack + ", losses=" + losses
-			+ ", championships=" + championships + ", category=" + category + ", wins=" + wins
+			+ ", championships=" + championships + ", wins=" + wins
 			+ "]";
 }
 
-public int getRacetrack() {
+public String getRacetrack() {
 	return racetrack;
 }
 
-public void setRacetrack(int racetrack) {
+public void setRacetrack(String racetrack) {
 	this.racetrack = racetrack;
 }
 
@@ -52,7 +64,7 @@ private int losses;
 private int championships;
 
 
-private String category;
+
 
 public Racecars getCar() {
 	return car;
@@ -94,15 +106,6 @@ public int getChampionships() {
 
 public void setChampionships(int championships) {
 	this.championships = championships;
-}
-
-
-public String getCategory() {
-	return category;
-}
-
-public void setCategory(String category) {
-	this.category = category;
 }
 
 
