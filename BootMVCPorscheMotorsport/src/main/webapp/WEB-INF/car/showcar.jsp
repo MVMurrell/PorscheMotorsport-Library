@@ -102,6 +102,7 @@ p {
 						<li class="list-group-item">Engine Cylinders:
 							${car.cylinders}</li>
 						<li class="list-group-item">Location: ${car.location}</li>
+						<li class="list-group-item">Race Info ID: ${car.raceInfoId}</li>
 						<li class="list-group-item">First Year of Production:
 							${car.firstYear}</li>
 					</ul>

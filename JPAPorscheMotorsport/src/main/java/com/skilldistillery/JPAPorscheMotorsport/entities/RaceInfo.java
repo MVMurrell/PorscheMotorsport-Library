@@ -4,7 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,8 +16,43 @@ public class RaceInfo {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 
-@OneToOne(mappedBy="ri")
+@ManyToOne
+@JoinColumn(name="id")
 private Racecars car;
+
+private int racetrack;
+
+private int racecarsId;
+
+public int getRacecarID() {
+	return racecarsId;
+}
+
+public void setRacecarID(int racecarID) {
+	this.racecarsId = racecarID;
+}
+
+@Override
+public String toString() {
+	return "RaceInfo [id=" + id + ", car=" + car + ", racetrack=" + racetrack + ", losses=" + losses
+			+ ", championships=" + championships + ", category=" + category + ", wins=" + wins
+			+ "]";
+}
+
+public int getRacetrack() {
+	return racetrack;
+}
+
+public void setRacetrack(int racetrack) {
+	this.racetrack = racetrack;
+}
+
+private int losses;
+
+private int championships;
+
+
+private String category;
 
 public Racecars getCar() {
 	return car;
@@ -60,13 +96,6 @@ public void setChampionships(int championships) {
 	this.championships = championships;
 }
 
-public int getRaces() {
-	return races;
-}
-
-public void setRaces(int races) {
-	this.races = races;
-}
 
 public String getCategory() {
 	return category;
@@ -76,12 +105,5 @@ public void setCategory(String category) {
 	this.category = category;
 }
 
-private int losses;
-
-private int championships;
-
-private int races;
-
-private String category;
 
 }

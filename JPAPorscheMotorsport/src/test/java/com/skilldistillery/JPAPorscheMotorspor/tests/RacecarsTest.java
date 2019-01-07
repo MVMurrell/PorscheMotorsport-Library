@@ -2,6 +2,8 @@ package com.skilldistillery.JPAPorscheMotorspor.tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,6 +22,7 @@ class RacecarsTest {
 	private EntityManager em;
 	private Racecars rc;
 	
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("PorscheRacecars");
@@ -35,6 +38,7 @@ class RacecarsTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		rc = em.find(Racecars.class, 1);
+		
 	}
 
 	@AfterEach
@@ -45,14 +49,27 @@ class RacecarsTest {
 
 	@Test
 	void test() {
-		assertEquals("64", rc.getModel());
+		assertEquals("65", rc.getModel());
 		assertEquals(1.1, rc.getEngineSize(),.001);
 	}
 	
-	@Test
-	void test_raceInfo_mapped() {
-		RaceInfo ri = rc.getRi();
-		assertEquals(10, ri.getWins());
-	}
+//	@Test
+//	void test_raceInfo_mapped() {
+//		RaceInfo ri = new RaceInfo();
+//		List<RaceInfo> ri2 = rc.getRi();
+//		em.getTransaction().begin();
+//		ri.setRacecarID(1);
+//		ri.setRaces(10);
+//		ri.setChampionships(5);	
+//		em.persist(ri);
+//		em.flush();
+//		rc.setRaceInfoId(1);
+//		em.getTransaction().commit();
+//		System.out.println(rc.getRaceInfoId());
+//		
+//		
+//	}
+	
+	
 
 }

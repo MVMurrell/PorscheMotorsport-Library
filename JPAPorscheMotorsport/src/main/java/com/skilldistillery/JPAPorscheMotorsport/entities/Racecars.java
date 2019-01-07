@@ -1,12 +1,13 @@
 package com.skilldistillery.JPAPorscheMotorsport.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Racecars {
@@ -15,19 +16,18 @@ public class Racecars {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 
-@OneToOne
-@JoinColumn(name="id")
-private RaceInfo ri;
+@OneToMany(mappedBy="car")
+private List <RaceInfo> ri;
 
-public RaceInfo getRi() {
+private String model;
+
+public List<RaceInfo> getRi() {
 	return ri;
 }
 
-public void setRi(RaceInfo ri) {
+public void setRi(List<RaceInfo> ri) {
 	this.ri = ri;
 }
-
-private String model;
 
 @Column(name="engine_size")
 private Double engineSize;
