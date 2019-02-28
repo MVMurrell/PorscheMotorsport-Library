@@ -29,7 +29,7 @@ public class RaceCarsDAOImpl implements RaceCarsDAO {
 	@Transactional
 	@Override
 	public List<Racecars> getCarByKeyword(String keyword) {
-		String qry = "Select cars FROM Racecars cars Where cars.model LIKE :keyword";
+		String qry = "Select cars FROM Racecars cars WHERE cars.model LIKE :keyword OR cars.id LIKE :keyword";
 		List<Racecars> cars = new ArrayList<Racecars>();
 				cars=em.createQuery(qry, Racecars.class)
 				.setParameter("keyword", "%"+keyword+"%")

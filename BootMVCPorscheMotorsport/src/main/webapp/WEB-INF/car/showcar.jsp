@@ -75,6 +75,7 @@ p {
 		</c:when>
 		<c:otherwise>
 			<br>
+			<img src="${car.image}" class="img-fluid" alt="Responsive image">
 			<h3>Porsche ${car.model}</h3>
 			<div class="row">
 				<div class="col">

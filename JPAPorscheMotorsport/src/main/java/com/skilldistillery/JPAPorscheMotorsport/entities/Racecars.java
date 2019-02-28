@@ -90,6 +90,17 @@ private String location;
 @Column(name="first_year_of_production")
 private Integer firstYear;
 
+@Column(name="picture_url")
+private String image;
+
+public String getImage() {
+	return image;
+}
+
+public void setImage(String image) {
+	this.image = image;
+}
+
 @Override
 public String toString() {
 	return "Racecars [id=" + id + ", model=" + model + ", engineSize=" + engineSize + ", horsepower=" + horsepower
@@ -141,9 +152,11 @@ public int hashCode() {
 	result = prime * result + ((firstYear == null) ? 0 : firstYear.hashCode());
 	result = prime * result + ((horsepower == null) ? 0 : horsepower.hashCode());
 	result = prime * result + id;
+	result = prime * result + ((image == null) ? 0 : image.hashCode());
 	result = prime * result + ((location == null) ? 0 : location.hashCode());
 	result = prime * result + ((model == null) ? 0 : model.hashCode());
 	result = prime * result + ((productionRun == null) ? 0 : productionRun.hashCode());
+	result = prime * result + ((ri == null) ? 0 : ri.hashCode());
 	result = prime * result + ((subModels == null) ? 0 : subModels.hashCode());
 	result = prime * result + ((topSpeed == null) ? 0 : topSpeed.hashCode());
 	result = prime * result + ((torque == null) ? 0 : torque.hashCode());
@@ -348,6 +361,11 @@ public boolean equals(Object obj) {
 		return false;
 	if (id != other.id)
 		return false;
+	if (image == null) {
+		if (other.image != null)
+			return false;
+	} else if (!image.equals(other.image))
+		return false;
 	if (location == null) {
 		if (other.location != null)
 			return false;
@@ -362,6 +380,11 @@ public boolean equals(Object obj) {
 		if (other.productionRun != null)
 			return false;
 	} else if (!productionRun.equals(other.productionRun))
+		return false;
+	if (ri == null) {
+		if (other.ri != null)
+			return false;
+	} else if (!ri.equals(other.ri))
 		return false;
 	if (subModels == null) {
 		if (other.subModels != null)
