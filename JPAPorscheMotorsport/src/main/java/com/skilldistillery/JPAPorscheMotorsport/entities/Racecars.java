@@ -18,7 +18,7 @@ private int id;
 private String model;
 
 @Column(name="engine_size")
-private Double engineSize;
+private Integer engineSize;
 
 private Integer horsepower;
 
@@ -51,9 +51,9 @@ private String transmission;
 
 private Integer cylinders;
 
-private String location;
+//private String location;
 
-@Column(name="first_year_of_production")
+@Column(name="begin_production")
 private Integer firstYear;
 
 @Override
@@ -62,16 +62,16 @@ public String toString() {
 			+ ", torque=" + torque + ", topSpeed=" + topSpeed + ", enginePosition=" + enginePosition + ", weight="
 			+ weight + ", value=" + value + ", subModels=" + subModels + ", drivetrain=" + drivetrain + ", engineType="
 			+ engineType + ", productionRun=" + productionRun + ", designer=" + designer + ", transmission="
-			+ transmission + ", cylinders=" + cylinders + ", location=" + location + ", firstYear=" + firstYear + "]";
+			+ transmission + ", cylinders=" + cylinders + ", firstYear=" + firstYear + "]";
 }
 
 public Racecars() {
 	super();
 }
 
-public Racecars(int id, String model, Double engineSize, Integer horsepower, Integer torque, Integer topSpeed,
+public Racecars(int id, String model, Integer engineSize, Integer horsepower, Integer torque, Integer topSpeed,
 		String enginePosition, Integer weight, Integer value, String subModels, String drivetrain, String engineType,
-		Integer productionRun, String designer, String transmission, Integer cylinders, String location,
+		Integer productionRun, String designer, String transmission, Integer cylinders,
 		Integer firstYear) {
 	super();
 	this.id = id;
@@ -90,7 +90,6 @@ public Racecars(int id, String model, Double engineSize, Integer horsepower, Int
 	this.designer = designer;
 	this.transmission = transmission;
 	this.cylinders = cylinders;
-	this.location = location;
 	this.firstYear = firstYear;
 }
 
@@ -107,7 +106,6 @@ public int hashCode() {
 	result = prime * result + ((firstYear == null) ? 0 : firstYear.hashCode());
 	result = prime * result + ((horsepower == null) ? 0 : horsepower.hashCode());
 	result = prime * result + id;
-	result = prime * result + ((location == null) ? 0 : location.hashCode());
 	result = prime * result + ((model == null) ? 0 : model.hashCode());
 	result = prime * result + ((productionRun == null) ? 0 : productionRun.hashCode());
 	result = prime * result + ((subModels == null) ? 0 : subModels.hashCode());
@@ -135,11 +133,11 @@ public void setModel(String model) {
 	this.model = model;
 }
 
-public Double getEngineSize() {
+public Integer getEngineSize() {
 	return engineSize;
 }
 
-public void setEngineSize(Double engineSize) {
+public void setEngineSize(Integer engineSize) {
 	this.engineSize = engineSize;
 }
 
@@ -247,13 +245,6 @@ public void setCylinders(Integer cylinders) {
 	this.cylinders = cylinders;
 }
 
-public String getLocation() {
-	return location;
-}
-
-public void setLocation(String location) {
-	this.location = location;
-}
 
 public Integer getFirstYear() {
 	return firstYear;
@@ -313,11 +304,6 @@ public boolean equals(Object obj) {
 	} else if (!horsepower.equals(other.horsepower))
 		return false;
 	if (id != other.id)
-		return false;
-	if (location == null) {
-		if (other.location != null)
-			return false;
-	} else if (!location.equals(other.location))
 		return false;
 	if (model == null) {
 		if (other.model != null)

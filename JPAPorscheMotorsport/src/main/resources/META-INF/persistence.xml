@@ -4,14 +4,14 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-  <persistence-unit name="PorscheRacecars">
+  <persistence-unit name="porsche_auto">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
     
     <class>com.skilldistillery.JPAPorscheMotorsport.entities.Racecarse</class>
 
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/porscheracecars?useSSL=false" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/porsche_auto?useSSL=false" />
       <property name="javax.persistence.jdbc.user" value="admin"/>
       <property name="javax.persistence.jdbc.password" value="admin1" />
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

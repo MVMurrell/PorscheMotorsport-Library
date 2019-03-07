@@ -53,65 +53,65 @@ font-family: 'Thasadith', sans-serif;
 				name="model"></input>
 		</div>
 		<div class="form-group">
-			<label id="engineSize">Engine Size(liters)</label> <input type="text"
-				id="engineSize" name="engineSize"></input>
+			<label id="engineSize">Engine Size(liters)</label> <input type="text" 
+				id="engineSize" name="engineSize" required></input>
 		</div>
 		<div class="form-group">
 			<label id="horsepower">Horsepower</label> <input type="number"
-				id="horsepower" name="horsepower"></input>
+				id="horsepower" name="horsepower" required></input>
 		</div>
 		<div class="form-group">
 			<label id="torque">Torque(lbs/ft)</label> <input type="number"
-				id="torque" name="torque"></input>
+				id="torque" name="torque" required></input>
 		</div>
 		<div class="form-group">
 			<label id="topSpeed">Top Speed (mph)</label> <input type="number"
-				id="topSpeed" name="topSpeed"></input>
+				id="topSpeed" name="topSpeed" required></input>
 		</div>
 		<div class="form-group">
 			<label id="enginePosition">Engine Position</label> <input type="text"
-				id="enginePosition" name="enginePosition"></input>
+				id="enginePosition" name="enginePosition" required></input>
 		</div>
 		<div class="form-group">
 			<label id="weight">Weight(lbs)</label> <input type="number"
-				id="weight" name="weight"></input>
+				id="weight" name="weight" required></input>
 		</div>
 		<div class="form-group">
 			<label id="value">Market Value ($)</label> <input type="number"
-				id="value" name="value"></input>
+				id="value" name="value" required></input>
 		</div>
 		<div class="form-group">
 			<label id="subModels">Sub Models</label> <input type="text"
-				id="subModels" name="subModels" rows="3"></input>
+				id="subModels" name="subModels" rows="3" required></input>
 		</div>
 		<div class="form-group">
 			<label id="drivetrain">Drivetrain</label> <input type="text"
-				id="drivetrain" name="drivetrain"></input>
+				id="drivetrain" name="drivetrain" required></input>
 		</div>
 		<div class="form-group">
 			<label id="engineType">Engine Type</label> <input type="text"
-				id="engineType" name="engineType"></input>
+				id="engineType" name="engineType" required></input>
 		</div>
 		<div class="form-group">
 			<label id="productionRun">Production Run</label> <input type="number"
-				id="productionRun" name="productionRun"></input>
+				id="productionRun" name="productionRun" required></input>
 		</div>
 		<div class="form-group">
 			<label id="designer">Designer</label> <input type="text"
-				id="designer" name="designer"></input>
+				id="designer" name="designer" required></input>
 		</div>
 		<div class="form-group">
 			<label id="transmission">Transmission</label> <input type="text"
-				id="transmission" name="transmission"></input>
+				id="transmission" name="transmission" required></input>
 		</div>
 		<div class="form-group">
 			<label id="cylinders">Number of Cylinders</label> <input
-				type="number" id="cyclinders" name="cylinders"></input>
+				type="number" id="cyclinders" name="cylinders" required></input>
 		</div>
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<label id="location">Location</label> <input type="text"
 				id="location" name="location"></input>
-		</div>
+		</div> -->
 		<div class="form-group">
 			<label id="firstYear">First Year of Production</label> <input
 				type="number" id="firstYear" name="firstYear" required min="1940"></input>

@@ -51,13 +51,13 @@ public class CarController {
 	}
 	
 	@RequestMapping(path="createCar.do" , method=RequestMethod.POST)
-	public ModelAndView createCar(@RequestParam("model") String model1 , @RequestParam("engineSize") double engine , 
+	public ModelAndView createCar(@RequestParam("model") String model1 , @RequestParam("engineSize") int engine , 
 			@RequestParam("horsepower") int hp , @RequestParam("torque") int torque , @RequestParam("topSpeed") int speed , 
 			@RequestParam("enginePosition") String enginePosition, @RequestParam("weight") int weight, @RequestParam("value") int value, 
 			@RequestParam("subModels") String subModels, @RequestParam("drivetrain") String drivetrain , 
 			@RequestParam("engineType") String engineType, @RequestParam("productionRun") int productionRun, 
 			@RequestParam("designer") String designer, @RequestParam("transmission") String transmission, 
-			@RequestParam("cylinders") int cylinders, @RequestParam("location") String location, @RequestParam("firstYear") int firstYear){
+			@RequestParam("cylinders") int cylinders,  @RequestParam("firstYear") int firstYear){
             ModelAndView mv = new ModelAndView("WEB-INF/car/createdcar.jsp");
 			Racecars car = new Racecars();
 			car.setId(0);
@@ -76,7 +76,7 @@ public class CarController {
             car.setDesigner(designer);
             car.setTransmission(transmission);
             car.setCylinders(cylinders);
-            car.setLocation(location);
+//            car.setLocation(location);
             car.setFirstYear(firstYear);
             car = dao.createCar(car);
             if (car != null) 

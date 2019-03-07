@@ -60,8 +60,8 @@
 		<li class="list-group-item">Designer: ${car.designer}</li>
 		<li class="list-group-item">Transmission: ${car.transmission}</li>
 		<li class="list-group-item">Engine Cylinders: ${car.cylinders}</li>
-		<li class="list-group-item">Location: ${car.location}</li>
-		<li class="list-group-item">First Year of Production:
+<%-- 		<li class="list-group-item">Location: ${car.location}</li>
+ --%>		<li class="list-group-item">First Year of Production:
 			${car.firstYear}</li>
 	</ul>
 	<div>
