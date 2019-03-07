@@ -22,28 +22,23 @@ DROP TABLE IF EXISTS `racecars` ;
 
 CREATE TABLE IF NOT EXISTS `racecars` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `model` VARCHAR(40) NULL DEFAULT NULL,
-  `engine_size` DOUBLE NULL DEFAULT 0.0,
-  `horsepower` INT NULL DEFAULT 0,
-  `torque` INT NULL DEFAULT 0,
-  `top_speed` INT NULL DEFAULT 0,
-  `engine_position` VARCHAR(45) NULL DEFAULT NULL,
-  `weight` INT NULL DEFAULT 0,
-  `sub_models` VARCHAR(100) NULL DEFAULT NULL,
-  `drivetrain` VARCHAR(45) NULL DEFAULT NULL,
-  `engine_type` VARCHAR(100) NULL DEFAULT NULL,
-  `production_run` INT NULL DEFAULT 0,
-  `designer` VARCHAR(45) NULL DEFAULT NULL,
-  `transmission` VARCHAR(45) NULL DEFAULT NULL,
-  `cylinders` INT NULL DEFAULT 0,
-  `value` INT NULL DEFAULT 0,
-  `first_year_of_production` INT NULL DEFAULT 0,
-  `race_id` INT NULL DEFAULT 0,
-  `location` VARCHAR(45) NULL DEFAULT 'null',
-  PRIMARY KEY (`id`),
-  INDEX `race_id` (`race_id` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  `model` VARCHAR(40) NULL,
+  `engine_size` INT NULL,
+  `horsepower` INT NULL,
+  `torque` INT NULL,
+  `first_year_of_production` INT NULL,
+  `top_speed` INT NULL,
+  `engine_position` VARCHAR(45) NULL,
+  `weight` DOUBLE NULL,
+  `sub_models` VARCHAR(100) NOT NULL DEFAULT 'None',
+  `drivetrain` VARCHAR(45) NULL,
+  `engine_type` VARCHAR(100) NULL,
+  `production_run` INT NULL,
+  `designer` VARCHAR(45) NULL,
+  `transmission` VARCHAR(45) NULL,
+  `cylinders` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -53,26 +48,25 @@ DROP TABLE IF EXISTS `race_info` ;
 
 CREATE TABLE IF NOT EXISTS `race_info` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `racetrack_id` INT NULL DEFAULT NULL,
-  `wins` INT NULL DEFAULT 0,
-  `losses` INT NULL DEFAULT 0,
-  `championships` INT NULL DEFAULT 0,
-  `car_id` INT NULL DEFAULT 0,
+  `wins` INT NULL,
+  `losses` INT NULL,
+  `championships` INT NULL,
+  `races` INT NULL,
+  `category` VARCHAR(30) NULL,
   PRIMARY KEY (`id`),
-  INDEX `car_id_idx` (`car_id` ASC),
-  CONSTRAINT `car_id`
-    FOREIGN KEY (`car_id`)
+  CONSTRAINT `fk_race_info_racecars`
+    FOREIGN KEY (`id`)
     REFERENCES `racecars` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
-DROP USER IF EXISTS admin@localhost;
+DROP USER IF EXISTS porschego@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin1';
+CREATE USER 'porschego'@'localhost' IDENTIFIED BY 'porsche';
 
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'admin'@'localhost';
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'porschego'@'localhost';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -83,18 +77,38 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `porscheracecars`;
-INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`, `value`, `first_year_of_production`, `race_id`, `location`) VALUES (1, '65', 1.1, 85, 30, 90, 'Rear Mounted', 1356, 'None', 'Rear wheel drive', '1.1L Type 369 B4', 3, 'Ferry Porsche', '4 Speed', 4, 1000000, 1943, 1, 'LA');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `race_info`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `porscheracecars`;
-INSERT INTO `race_info` (`id`, `racetrack_id`, `wins`, `losses`, `championships`, `car_id`) VALUES (1, 1, 3, 4, 2, 1);
-INSERT INTO `race_info` (`id`, `racetrack_id`, `wins`, `losses`, `championships`, `car_id`) VALUES (2, 2, 2, 3, 2, 1);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (1, '64', 1.1, 50, 39, 1938, 99, 'Rear Engine', 1289.7, DEFAULT, 'Rear Wheel Drive', 'Type 369 B4 Flat 4', 3, 'Porsche Büro', '4 Speed Manual', 4);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (2, '360', 1.5, 385, 274, 1949, 185, 'Mid Engine', 1598, DEFAULT, 'All Wheel Drive', 'Two Stage Roots Supercharged Flat 12', 1, 'Ferdinand Porsche', '5 Speed Sequential', 12);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (3, '550', 1.5, 110, 89, 1953, 140, 'Mid Engine', 1212, DEFAULT, 'Rear Wheel Drive', 'Type 547 Flat 4', 2, NULL, '5 Speed Manual', 4);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (4, '718', NULL, NULL, NULL, 1964, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (5, '787', NULL, NULL, NULL, 1964, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (6, '804', NULL, NULL, NULL, 1964, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (7, '904', NULL, NULL, NULL, 1965, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (8, '906', NULL, NULL, NULL, 1970, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (9, '907', NULL, NULL, NULL, 1970, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (10, '908', NULL, NULL, NULL, 1974, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (11, '909', NULL, NULL, NULL, 1974, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (12, '910', NULL, NULL, NULL, 1984, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (13, '911 GT1', NULL, NULL, NULL, 1978, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (14, '911 GT2', NULL, NULL, NULL, 1976, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (15, '911 Turbo', NULL, NULL, NULL, 1974, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (16, '924', NULL, NULL, NULL, 1976, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (17, '924 Turbo', NULL, NULL, NULL, 1979, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (18, '928', NULL, NULL, NULL, 1978, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (19, '928 GT/GTS', NULL, NULL, NULL, 1989, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (20, '944', NULL, NULL, NULL, 1982, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (21, '944 Turbo', NULL, NULL, NULL, 1985, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (22, '959', NULL, NULL, NULL, 1987, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (23, '964', NULL, NULL, NULL, 1989, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (24, '964 Turbo', NULL, NULL, NULL, 1991, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (25, '968', NULL, NULL, NULL, 1992, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (26, '993', NULL, NULL, NULL, 1994, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (27, '993 Turbo', NULL, NULL, NULL, 1995, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (28, '986', NULL, NULL, NULL, 1997, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (29, '996', NULL, NULL, NULL, 1998, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (30, '980', NULL, NULL, NULL, 2003, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (31, 'No. 1', 1.1, 40, NULL, 1948, NULL, 'Mid Engine', 1290, 'None', 'Rear Wheel Drive', 'VW369 B4', 1, 'Erwin Komenda', NULL, NULL);
+INSERT INTO `racecars` (`id`, `model`, `engine_size`, `horsepower`, `torque`, `first_year_of_production`, `top_speed`, `engine_position`, `weight`, `sub_models`, `drivetrain`, `engine_type`, `production_run`, `designer`, `transmission`, `cylinders`) VALUES (DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
